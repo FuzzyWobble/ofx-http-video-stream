@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+<meta charset="utf-8">
+<title>VID_FEED</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.backstretch.js"></script>
+<style>
+    body,html{
+        width:100%;height:100%;margin:0px;padding:0px;overflow:hidden;background-color:#111;
+    }
+    #fillscreen{width:1px;height:1px;position:absolute;top:0px;left:0px;}
+</style>
+</head>
+<body>
+
+    <div id="fillscreen">
+        <img src="/ipvideo"/ width="100%" height="100%">
+    </div>
+
+    <script>
+        function fill(){
+            var w=640;var h=480;var r=w/h;
+            var body_w = $("body").width();var body_h = $("body").height();var body_r=body_w/body_h;
+            if(body_r>r){
+                $("#fillscreen").css("width",body_w+"px");
+                var new_h = body_w/r;
+                $("#fillscreen").css("height",new_h+"px");
+                var offset_y = -(new_h-body_h)/2;
+                $("#fillscreen").css("left","0px").css("top",offset_y+"px");
+            }else{
+                $("#fillscreen").css("height",body_h+"px");
+                var new_w = body_h*r;
+                $("#fillscreen").css("width",new_w+"px");
+                var offset_x = -(new_w-body_w)/2;
+                $("#fillscreen").css("top","0px").css("left",offset_x+"px");            
+            }
+        }
+        $(document).ready(function(){
+            fill();
+        });
+        $(window).resize(function(){
+            fill();
+        });
+        $(window).load(function(){
+            fill();
+        });
+    </script>
+
+</body>
+</html>
+
+
+
